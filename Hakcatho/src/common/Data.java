@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Data<T> implements Serializable{
 
-	T info;
+	private T info;
 	
 	//Creates a wrapper class holding a generic type of information
-	Data(T storedInformation)
+	public Data(T storedInformation)
 	{
 		info = storedInformation;
 	}
 	
 	//Gets the information from the wrapper class
-	T getInfo()
+	public T getInfo()
 	{
 		return info;
 	}

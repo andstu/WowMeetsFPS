@@ -27,7 +27,7 @@ public class GameManager {
 			}
 			
 			//New Thread for Every incoming connection request
-			new Thread(new ClientThread(socket)).start();
+			new Thread(new ServerThread(socket)).start();
 		}
 		
 	}
