@@ -8,7 +8,10 @@ import javax.swing.ImageIcon;
 
 public class Tank implements Character, Serializable {
 	private Point2D.Double location;
-	private ImageIcon image;
+	private ImageIcon imageUp = new ImageIcon(getClass().getResource("/Facingback.png")), 
+					  imageDown = new ImageIcon(getClass().getResource("/FrontFacing.png")), 
+					  imageLeft = new ImageIcon(getClass().getResource("/FacingLeft.png")), 
+					  imageRight = new ImageIcon(getClass().getResource("/FrontRight.png"));
 	private String id;
 	private int defense, attack, hp, speed;
 	LinkedList<Projectile> projectiles;
@@ -61,8 +64,14 @@ public class Tank implements Character, Serializable {
 	}
 
 	@Override
-	public ImageIcon getImageIcon() {
-		// TODO Auto-generated method stub
+	public ImageIcon getImageIcon(Dir direction) {
+		
+		switch (direction) {
+		case UP: return imageUp;
+		case DOWN: return imageDown;
+		case LEFT: return imageLeft;
+		case RIGHT: return imageRight;		
+		}
 		return null;
 	}
 

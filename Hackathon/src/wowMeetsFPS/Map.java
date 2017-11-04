@@ -72,7 +72,7 @@ public class Map extends JPanel{
 	}
 	public void doDrawing(Graphics g) { //does the drawing
 		g.drawImage(background, 0, 0, this);
-		g.drawImage(user.getImageIcon().getImage(), (int) user.getLoc().getX(), (int) user.getLoc().getY(), this);
+		g.drawImage(user.getImageIcon(movementDirection).getImage(), (int) user.getLoc().getX(), (int) user.getLoc().getY(), this);
 		
 	}
 	public void performAction() { //executes actions here
