@@ -31,6 +31,4 @@ public interface Character {
 	public void setSpeed(int speed);
 	public ImageIcon setImage(ImageIcon sprite);
 	public Point.Double setLoc(Point.Double location);
-	
-	public boolean isDead();
 }
