@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketAddress;
 
+import common.Character;
+
 public class Client {
 	
 	final Character user = null;

@@ -3,6 +3,8 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import common.Character;
 
 public class GameManager {
 	static final int PORT = 25565;
@@ -12,6 +14,7 @@ public class GameManager {
 		//Initialize Socket Variables
 		ServerSocket serverSocket = null;
 		Socket socket = null;
+		HashMap<String, Character> players = new HashMap<String, Character>();
 	
 		try {
 			serverSocket = new ServerSocket(PORT);
@@ -27,7 +30,7 @@ public class GameManager {
 			}
 			
 			//New Thread for Every incoming connection request
-			new Thread(new ServerThread(socket)).start();
+			new Thread(new ServerThread(socket, players)).start();
 		}
 		
 	}
