@@ -72,7 +72,7 @@ public class Map extends JPanel{
 	}
 	public void doDrawing(Graphics g) { //does the drawing
 		g.drawImage(background, 0, 0, this);
-		g.drawImage(user.getImageIcon(movementDirection).getImage(), (int) user.getLoc().getX(), (int) user.getLoc().getY(), this);
+		g.drawImage(user.getImage(), (int) user.getLoc().getX(), (int) user.getLoc().getY(), this);
 		
 	}
 	public void performAction() { //executes actions here
@@ -83,7 +83,7 @@ public class Map extends JPanel{
 		}
 		repaint();
 	}
-	Dir movementDirection = null;
+	Dir movementDirection = Dir.RIGHT;
 	private class KeyAction extends KeyAdapter {
 		public void keyPressed(KeyEvent arg0) {
 			switch(arg0.getKeyCode())

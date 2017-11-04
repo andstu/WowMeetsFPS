@@ -1,5 +1,6 @@
 package wowMeetsFPS;
 
+import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
 
@@ -26,14 +27,14 @@ public interface Character {
 	public int getDefense();
 	public int getAttack();
 	public int getSpeed();
-	public ImageIcon getImageIcon(Dir direction);
+	public Image getImage();
 	public Point2D.Double getLoc();
 	
 	public void setHP(int hp);
 	public void setDefense(int defense);
 	public void setAttack(int attack);
 	public void setSpeed(int speed);
-	public void setImage(ImageIcon sprite);
+	public void setImage(ImageIcon sprite, Dir direction);
 	public void setLoc(Point2D.Double location);
 	
 	public String getID();
