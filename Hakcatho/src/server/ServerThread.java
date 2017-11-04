@@ -5,15 +5,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
+import common.Character;
 
 import common.Data;
 
 public class ServerThread implements Runnable{
 
 	protected Socket socket;
-	private Character[] players;
+	private HashMap<String, Character> players;
 	
-	public ServerThread(Socket socket, Character[] players) {
+	public ServerThread(Socket socket, HashMap<String, Character> players) {
 		this.socket = socket;
 		this.players = players;
 	}
@@ -22,7 +24,6 @@ public class ServerThread implements Runnable{
 	public void run() {
 		ObjectInputStream in = null;
 		ObjectOutputStream out = null;
-		BufferedReader buff = null;
 		Character curr;
 		Data<Character> info = null;
 		
@@ -30,6 +31,19 @@ public class ServerThread implements Runnable{
 			in = new ObjectInputStream(socket.getInputStream());
 			info = (Data<Character>) in.readObject();
 			curr = info.getInfo();
+			players.put(curr.getID(), curr);
+			
+			out = new ObjectOutputStream(socket.getOutputStream());
+			Character[] toSend = new Character[players.size() - 1];
+			int i = 0;
+			for(String s: players.keySet()) {
+				if(s.equals(curr.getID())) continue;
+				toSend[i] = players.get(s);
+				i++;
+			}
+			out.writeObject(new Data<Character[]>(toSend));
+			socket.close();
+			
 			
 			
 		}catch(IOException e) {

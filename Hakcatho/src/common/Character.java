@@ -1,4 +1,4 @@
-package wowMeetsFPS;
+package common;
 
 import java.awt.Point;
 
