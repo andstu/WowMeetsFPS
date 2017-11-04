@@ -15,7 +15,7 @@ public class Client {
 	public static void main(String[] args){
 		System.out.println("Server is a go");
 		user = new Tank("Andrew" + Math.random()*10); //Initalize Character
-		map = new Map(Color c, user, otherPlayers);
+		map = new Map(null, user, otherPlayers);
 		connectToServer("127.0.0.1",PORT, user);
 	}
 	
