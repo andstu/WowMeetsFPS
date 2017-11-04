@@ -22,7 +22,7 @@ public class Map extends JPanel{
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //screensize
 	private int delay = 5; //sets time between frames 
-	private Image background;
+	private Image background = new ImageIcon(getClass().getResource("/pokegrass(background).png")).getImage();
 	private boolean inGame = false;
 	Character user;
 	Character[] otherUsers;
@@ -70,9 +70,10 @@ public class Map extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		doDrawing(g);
 	}
 	public void doDrawing(Graphics g) { //does the drawing
-		//g.drawImage(background, 0, 0, null);
+		g.drawImage(background, 0, 0, this);
 		
 	}
 	public void performAction() { //executes actions here
