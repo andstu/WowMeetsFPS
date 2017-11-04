@@ -22,6 +22,7 @@ public class Client {
 			map.performAction();
 			map.updateMap(user, otherPlayers);
 			connectToServer("127.0.0.1",PORT, user);
+			System.out.println("Updating");
 		}
 		
 	};

@@ -15,11 +15,12 @@ public class Tank implements Character, Serializable {
 					  imageRight = new ImageIcon(getClass().getResource("/FacingRight.png"));
 	private Image current = imageDown.getImage();
 	private String id;
-	private int defense, attack, hp, speed;
+	private int defense, attack, hp, speed = 100;
 	LinkedList<Projectile> projectiles;
 	
 	public Tank(String id) {
 		this.id = id;
+		location = new Point2D.Double(200, 200);
 	}
 
 	@Override
@@ -104,10 +105,14 @@ public class Tank implements Character, Serializable {
 	public void setImage(ImageIcon sprite, Dir direction) {
 
 		switch(direction) {
-		case UP: current = imageUp.getImage();
+		case UP: current = imageUp.getImage(); 
+			break;
 		case DOWN: current = imageDown.getImage();
+			break;
 		case LEFT: current = imageLeft.getImage();
+			break;
 		case RIGHT: current = imageRight.getImage();
+			break;
 		}
 		
 	}
