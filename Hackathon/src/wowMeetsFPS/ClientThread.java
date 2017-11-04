@@ -9,10 +9,12 @@ public class ClientThread implements Runnable{
 
 	protected Socket socket;
 	protected Character user;
+	protected Character[] otherUsers;
 	
-	public ClientThread(Socket socket, Character user) {
+	public ClientThread(Socket socket, Character user, Character[] otherUsers) {
 		this.socket = socket;
 		this.user = user;
+		this.otherUsers = otherUsers;
 	}
 	
 	@Override
@@ -24,6 +26,11 @@ public class ClientThread implements Runnable{
 			
 			ObjectInputStream infoFromServer = new ObjectInputStream(socket.getInputStream());
 			Data<Character[]> otherPlayers = (Data<Character[]>) infoFromServer.readObject();
+			Character[] otherPlayersArray = otherPlayers.info;
+			for(int i = 0; i < otherPlayersArray.length; i++)
+			{
+				this.otherUsers[i] = otherPlayersArray[i];
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
