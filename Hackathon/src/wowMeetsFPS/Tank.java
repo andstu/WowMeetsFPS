@@ -61,7 +61,7 @@ public class Tank implements Character, Serializable {
 	}
 
 	@Override
-	public ImageIcon getImage() {
+	public ImageIcon getImageIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

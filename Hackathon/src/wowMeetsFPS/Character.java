@@ -26,7 +26,7 @@ public interface Character {
 	public int getDefense();
 	public int getAttack();
 	public int getSpeed();
-	public ImageIcon getImage();
+	public ImageIcon getImageIcon();
 	public Point2D.Double getLoc();
 	
 	public void setHP(int hp);
