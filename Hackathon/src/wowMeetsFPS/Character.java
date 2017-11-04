@@ -37,5 +37,5 @@ public interface Character {
 	public Point.Double setLoc(Point.Double location);
 	
 	public String getID();
-	public void setID();
+	public void setID(String id);
 }
