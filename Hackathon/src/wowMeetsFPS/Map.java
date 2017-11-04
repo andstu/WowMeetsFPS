@@ -18,11 +18,10 @@ import javax.swing.Timer;
 
 import wowMeetsFPS.Character.Dir;
 
-public class Map extends JPanel implements ActionListener{
+public class Map extends JPanel{
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //screensize
 	private int delay = 5; //sets time between frames 
-	private Timer spf = new Timer(delay, this); //seconds per frame. After x seconds the painting will refresh and update graphics
 	private Image background;
 	private boolean inGame = false;
 	Character user;
@@ -66,7 +65,7 @@ public class Map extends JPanel implements ActionListener{
 	 * Other (I do not know what else needs to be put here)
 	 */
 	public void initGame() {
-		spf.start();
+		
 	}
 	@Override
 	public void paintComponent(Graphics g) {
@@ -76,8 +75,7 @@ public class Map extends JPanel implements ActionListener{
 		//g.drawImage(background, 0, 0, null);
 		
 	}
-	@Override
-	public void actionPerformed(ActionEvent arg0) { //executes actions here
+	public void performAction() { //executes actions here
 
 		if(inGame) {//execute actions in here
 			if(movementDirection != null)
