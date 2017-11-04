@@ -28,7 +28,7 @@ public class ClientThread implements Runnable{
 			
 			ObjectInputStream infoFromServer = new ObjectInputStream(socket.getInputStream());
 			Data<Character[]> otherPlayers = (Data<Character[]>) infoFromServer.readObject();
-			Character[] otherPlayersArray = otherPlayers.info;
+			Character[] otherPlayersArray = otherPlayers.getInfo();
 			for(int i = 0; i < otherPlayersArray.length; i++)
 			{
 				this.otherUsers[i] = otherPlayersArray[i];
