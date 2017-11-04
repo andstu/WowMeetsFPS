@@ -5,8 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import common.Character;
-
 public class ClientThread implements Runnable{
 
 	protected Socket socket;
