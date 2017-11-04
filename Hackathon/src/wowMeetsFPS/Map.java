@@ -101,12 +101,7 @@ public class Map extends JPanel implements ActionListener{
 		{
 			movementDirection = null;
 		}
-	}
-	
-		
-}
-	
-	
+	}	
 	public int getHeight() { return (int) screenSize.getHeight(); }
 	public int getWidth() { return (int) screenSize.getWidth(); }
 	
