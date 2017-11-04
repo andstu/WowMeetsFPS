@@ -1,22 +1,26 @@
 package wowMeetsFPS;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
 
 import javax.swing.ImageIcon;
 
 public interface Character {
-	
 	/*
 	 * Moves by Updating Pos
 	 * Add speed to Pos
 	 */
-	public void move();
+	public enum Dir{
+		UP, DOWN, LEFT, RIGHT
+	}
+	
+	public void move(Dir dir);
 	/*
 	 * Attack using projectiles
 	 * Should have a linklist to store projectiles
 	 * cooldown so no spamming
 	 */
-	public void attack();
+	public void attack(Point2D target);
 	
 	public int getHP();
 	public int getDefense();
@@ -33,4 +37,5 @@ public interface Character {
 	public Point.Double setLoc(Point.Double location);
 	
 	public String getID();
+	public void setID();
 }
