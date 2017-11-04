@@ -1,27 +1,37 @@
 package wowMeetsFPS;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketAddress;
 
 public class Client {
 	
-	final Character user = null;
-	Character[] otherPlayers;
+	String username;
+	static Character[] otherPlayers;
+	static Character user;
+	static Map map;
 	final static int PORT = 25565;
 
 	public static void main(String[] args){
-		user = new Tank(); //Initalize Character
+		System.out.println("Server is a go");
+		user = new Tank("Andrew" + Math.random()*10); //Initalize Character
+		map = new Map(Color c, user, otherPlayers);
+		connectToServer("127.0.0.1",PORT, user);
 	}
 	
-	void connectToServer(SocketAddress ip, int port)
+	//Update Method
+	void Update()
 	{
-		SocketAddress serverIP = ip; //TODO: Find a way to pick IP
-		
-		Socket socket = new Socket();
+		map.updateMap(user, otherPlayers);
+		connectToServer("127.0.0.1",PORT, user);
+	}
+	
+	static void connectToServer(String ip, int port, Character user)
+	{
 		try
 		{
-			socket.connect(serverIP,port);
-			
+			Socket socket = new Socket(ip,port);
+			System.out.println("Client has connected to the server");
 			new Thread(new ClientThread(socket,user,otherPlayers)).start();
 			
 			socket.close();

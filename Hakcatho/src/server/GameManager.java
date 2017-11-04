@@ -10,7 +10,7 @@ public class GameManager {
 	static final int PORT = 25565;
 	
 	public static void main(String args[]) {
-
+		System.out.println("Server is a go");
 		//Initialize Socket Variables
 		ServerSocket serverSocket = null;
 		Socket socket = null;
@@ -34,5 +34,7 @@ public class GameManager {
 		}
 		
 	}
+	
+	
 	
 }

@@ -36,6 +36,13 @@ public class Map extends JPanel implements ActionListener{
 		initGame();
 		
 	}
+	
+	//Readjusts the location of player and other players
+	public void updateMap(Character player, Character[] otherPlayers)
+	{
+		user = player;
+		otherUsers = otherPlayers;
+	}
 	public void initGraphics(JFrame window) {
 		//panel
 		this.addKeyListener(new KeyAction());
