@@ -1,7 +1,7 @@
 package wowMeetsFPS;
 
-import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
@@ -37,4 +37,6 @@ public interface Character {
 	public void setLoc(Point2D.Double location);
 	
 	public String getID();
+	
+	public LinkedList<Projectile> getProjectiles();
 }

@@ -1,6 +1,7 @@
 package wowMeetsFPS;
 
 import java.awt.geom.Point2D;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
@@ -9,6 +10,7 @@ public class Tank implements Character {
 	private ImageIcon image;
 	private String id;
 	private int defense, attack, hp, speed;
+	LinkedList<Projectile> projectiles;
 	
 	public Tank(String id) {
 		this.id = id;
@@ -30,7 +32,7 @@ public class Tank implements Character {
 	@Override
 	public void attack(Point2D.Double target) {
 		// TODO Auto-generated method stub
-		new Projectile(50, attack, 10, location, target);
+		projectiles.add(new Projectile(50, attack, 10, location, target));
 	}
 
 	@Override
@@ -109,6 +111,12 @@ public class Tank implements Character {
 	public String getID() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public LinkedList<Projectile> getProjectiles() {
+		// TODO Auto-generated method stub
+		return projectiles;
 	}
 
 }
