@@ -1,8 +1,9 @@
-package common;
+package wowMeetsFPS;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
-public class Projectile {
+public class Projectile implements Serializable {
  //Interface to determine the projectiles of a character
 	int range;
 	int damage;

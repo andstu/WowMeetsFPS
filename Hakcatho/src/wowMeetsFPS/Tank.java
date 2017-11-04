@@ -1,11 +1,12 @@
-package common;
+package wowMeetsFPS;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
-public class Tank implements Character {
+public class Tank implements Character, Serializable{
 	private Point2D.Double location;
 	private ImageIcon image;
 	private String id;
@@ -110,7 +111,7 @@ public class Tank implements Character {
 	@Override
 	public String getID() {
 		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 	@Override

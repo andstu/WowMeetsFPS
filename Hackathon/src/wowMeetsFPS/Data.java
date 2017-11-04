@@ -3,7 +3,6 @@ package wowMeetsFPS;
 import java.io.Serializable;
 
 public class Data<T> implements Serializable{
-
 	private T info;
 	
 	//Creates a wrapper class holding a generic type of information

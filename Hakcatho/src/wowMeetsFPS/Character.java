@@ -1,4 +1,4 @@
-package common;
+package wowMeetsFPS;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;

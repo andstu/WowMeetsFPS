@@ -1,4 +1,4 @@
-package common;
+package wowMeetsFPS;
 
 import java.io.Serializable;
 

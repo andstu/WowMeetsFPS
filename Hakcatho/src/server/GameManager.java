@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
-import common.Character;
+
+import wowMeetsFPS.Character;
 
 public class GameManager {
 	static final int PORT = 25565;
@@ -24,15 +25,17 @@ public class GameManager {
 		
 		while(true) {
 			try {
+				System.out.println("Waiting....");
 				socket = serverSocket.accept();
+				System.out.println("Connected!");
 			}catch(IOException e) {
-				System.out.println("I/O Error: " + e);
+				System.out.println("Failed...");
+				//System.out.println("I/O Error: " + e);
 			}
 			
 			//New Thread for Every incoming connection request
 			new Thread(new ServerThread(socket, players)).start();
 		}
-		
 	}
 	
 	

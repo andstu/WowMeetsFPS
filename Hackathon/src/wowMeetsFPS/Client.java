@@ -1,6 +1,8 @@
 package wowMeetsFPS;
 import java.awt.Color;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.Timer;
@@ -39,12 +41,21 @@ public class Client {
 		{
 			Socket socket = new Socket(ip,port);
 			System.out.println("Client has connected to the server");
-			new Thread(new ClientThread(socket,user,otherPlayers)).start();
+
+			ObjectOutputStream infoToServer = new ObjectOutputStream(socket.getOutputStream());
+			infoToServer.writeObject(new Data<Character>(user));
+			
+			ObjectInputStream infoFromServer = new ObjectInputStream(socket.getInputStream());
+			Data<Character[]> otherPlayersArray = (Data<Character[]>) infoFromServer.readObject();
+			otherPlayers = otherPlayersArray.getInfo();
 			
 			socket.close();
 		}
 		catch(IOException e)
 		{
+			//e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

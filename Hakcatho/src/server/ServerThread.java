@@ -6,9 +6,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
-import common.Character;
 
-import common.Data;
+import wowMeetsFPS.Character;
+import wowMeetsFPS.Data;
 
 public class ServerThread implements Runnable{
 
@@ -31,6 +31,7 @@ public class ServerThread implements Runnable{
 			in = new ObjectInputStream(socket.getInputStream());
 			info = (Data<Character>) in.readObject();
 			curr = info.getInfo();
+			System.out.println(curr.getID());
 			players.put(curr.getID(), curr);
 			
 			out = new ObjectOutputStream(socket.getOutputStream());
