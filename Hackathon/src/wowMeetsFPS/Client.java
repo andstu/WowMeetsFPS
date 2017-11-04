@@ -3,8 +3,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import common.Character;
-
 public class Client {
 	
 	final Character user = null;
@@ -12,7 +10,7 @@ public class Client {
 	final static int PORT = 25565;
 
 	public static void main(String[] args){
-		
+		user = new Tank(); //Initalize Character
 	}
 	
 	void connectToServer(SocketAddress ip, int port)
