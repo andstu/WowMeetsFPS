@@ -20,8 +20,7 @@ import wowMeetsFPS.Character.Dir;
 
 public class Map extends JPanel{
 	
-	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //screensize
-	private int delay = 5; //sets time between frames 
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //screensize 
 	private Image background = new ImageIcon(getClass().getResource("/pokegrass(background).png")).getImage();
 	private boolean inGame = false;
 	Character user;
@@ -33,7 +32,6 @@ public class Map extends JPanel{
 		JFrame window = new JFrame();
 		initGraphics(window);
 		initGame();
-		
 	}
 	
 	//Readjusts the location of player and other players
@@ -74,6 +72,7 @@ public class Map extends JPanel{
 	}
 	public void doDrawing(Graphics g) { //does the drawing
 		g.drawImage(background, 0, 0, this);
+		g.drawImage(user.getImageIcon().getImage(), (int) user.getLoc().getX(), (int) user.getLoc().getY(), this);
 		
 	}
 	public void performAction() { //executes actions here
