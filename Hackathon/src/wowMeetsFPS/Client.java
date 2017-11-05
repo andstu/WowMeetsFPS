@@ -13,7 +13,7 @@ public class Client {
 	
 	
 	String username;
-	static LinkedList<Character> otherPlayers;
+	static Character[] otherPlayers;
 	static Character user;
 	static Map map;
 	static Timer timer = new Timer();
@@ -43,7 +43,7 @@ public class Client {
 		System.out.println("Server is a go");
 		user = new Tank("Andrew"); //Initalize Character
 		//Initialize otherPlayers
-		otherPlayers = new LinkedList<Character>();
+		otherPlayers = new Character[4];
 		map = new Map(null, user, otherPlayers);
 		connectToServer("127.0.0.1",PORT, user);
 		start();
@@ -58,9 +58,9 @@ public class Client {
 			infoToServer.writeObject(new Data<Character>(user));
 			
 			ObjectInputStream infoFromServer = new ObjectInputStream(socket.getInputStream());
-			Data<LinkedList<Character>> otherPlayersArray = (Data<LinkedList<Character>>) infoFromServer.readObject();
+			Data<Character[]> otherPlayersArray = (Data<Character[]>) infoFromServer.readObject();
 			otherPlayers = otherPlayersArray.getInfo();
-			map.updatePlayers(otherPlayers);
+			map.updateMap(user, otherPlayers);
 			socket.close();
 		}
 		catch(IOException e)

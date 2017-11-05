@@ -19,10 +19,10 @@ public class Map extends JPanel{
 	private Image background = new ImageIcon(getClass().getResource("/pokegrass(background).png")).getImage();
 	private boolean inGame = true;
 	Character user;
-	LinkedList<Character> otherUsers;
+	Character[] otherUsers;
 	boolean right = false, left = false, down = false, up = false;
 	
-	public Map(Color c, Character player, LinkedList<Character> otherPlayers) {
+	public Map(Color c, Character player, Character[] otherPlayers) {
 		user = player;
 		otherUsers = otherPlayers;
 		JFrame window = new JFrame();
@@ -30,12 +30,8 @@ public class Map extends JPanel{
 		initGame();
 	}
 	
-	public void updatePlayers(LinkedList<Character> p) {
-		otherUsers = p;
-	}
-	
 	//Readjusts the location of player and other players
-	public void updateMap(Character player, LinkedList<Character> otherPlayers)
+	public void updateMap(Character player, Character[] otherPlayers)
 	{
 		user = player;
 		otherUsers = otherPlayers;
