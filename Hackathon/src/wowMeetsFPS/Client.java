@@ -22,12 +22,11 @@ public class Client {
 			map.performAction();
 			map.updateMap(user, otherPlayers);
 			connectToServer("127.0.0.1",PORT, user);
-			System.out.println("Updating");
 		}
 		
 	};
 	public static void start() {
-		timer.scheduleAtFixedRate(tasks, 0, 50);
+		timer.scheduleAtFixedRate(tasks, 0, 1);
 	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");

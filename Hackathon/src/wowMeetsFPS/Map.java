@@ -22,7 +22,7 @@ public class Map extends JPanel{
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //screensize 
 	private Image background = new ImageIcon(getClass().getResource("/pokegrass(background).png")).getImage();
-	private boolean inGame = false;
+	private boolean inGame = true;
 	Character user;
 	Character[] otherUsers;
 
@@ -53,6 +53,8 @@ public class Map extends JPanel{
 		window.pack();
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
 		
 	}
@@ -84,7 +86,7 @@ public class Map extends JPanel{
 		}
 		repaint();
 	}
-	Dir movementDirection = Dir.RIGHT;
+	Dir movementDirection = null;
 	private class KeyAction extends KeyAdapter {
 		public void keyPressed(KeyEvent arg0) {
 			switch(arg0.getKeyCode())

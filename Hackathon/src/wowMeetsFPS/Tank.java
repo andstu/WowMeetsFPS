@@ -28,8 +28,8 @@ public class Tank implements Character, Serializable {
 		// TODO Auto-generated method stub
 		int x = 0, y = 0;
 		switch(dir) {
-		case UP: y = speed; break;
-		case DOWN: y = -1 * speed; break;
+		case UP: y = -1 * speed; break;
+		case DOWN: y = speed; break;
 		case LEFT: x = -1 * speed; break;
 		case RIGHT: x = speed; break;
 		}
