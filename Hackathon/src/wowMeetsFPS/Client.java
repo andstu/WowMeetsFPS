@@ -41,7 +41,7 @@ public class Client {
 	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");
-		user = new Tank("Andrew"); //Initalize Character
+		user = new Tank("Dan" + (int)Math.random()*1000); //Initalize Character
 		//Initialize otherPlayers
 		otherPlayers = new Character[4];
 		map = new Map(null, user, otherPlayers);
