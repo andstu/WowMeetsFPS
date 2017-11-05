@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 public class Projectile implements Serializable{
  //Interface to determine the projectiles of a character
-	private String imageLocation = "";
+	private String imageLocation = "/fireball.png";
 	int range;
 	int damage;
 	int speed;
