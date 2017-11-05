@@ -36,13 +36,14 @@ public class ServerThread implements Runnable{
 			players.put(curr.getID(), curr);
 			
 			out = new ObjectOutputStream(socket.getOutputStream());
-			LinkedList<Character> toSend = new LinkedList<Character>();
-
+			Character[] toSend = new Character[4];
+			int i = 0;
 			for(String s: players.keySet()) {
 				if(s.equals(curr.getID())) continue;
-				toSend.add(players.get(s));
+				toSend[i] = players.get(s);
+				i++;
 			}
-			out.writeObject(new Data<LinkedList<Character>>(toSend));
+			out.writeObject(new Data<Character[]>(toSend));
 			socket.close();
 			
 			
