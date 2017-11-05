@@ -42,7 +42,7 @@ public class Client {
 	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");
-		user = new Tank("Andrew" + Math.random()*10); //Initalize Character
+		user = new Tank("mATT" + Math.random()*10); //Initalize Character
 		map = new Map(null, user, otherPlayers);
 		connectToServer("127.0.0.1",PORT, user);
 		start();
@@ -52,7 +52,6 @@ public class Client {
 		try
 		{
 			Socket socket = new Socket(ip,port);
-			System.out.println("Client has connected to the server");
 
 			ObjectOutputStream infoToServer = new ObjectOutputStream(socket.getOutputStream());
 			infoToServer.writeObject(new Data<Character>(user));
@@ -60,6 +59,10 @@ public class Client {
 			ObjectInputStream infoFromServer = new ObjectInputStream(socket.getInputStream());
 			Data<Character[]> otherPlayersArray = (Data<Character[]>) infoFromServer.readObject();
 			otherPlayers = otherPlayersArray.getInfo();
+			if(otherPlayers[0] != null)
+			{
+				System.out.println("The user: " + otherPlayers[0].getID() + " is in lobby with you!");
+			}
 			
 			socket.close();
 		}
