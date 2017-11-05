@@ -24,14 +24,20 @@ public class Tank implements Character, Serializable {
 	}
 
 	@Override
-	public void move(Dir dir) {
+	public void move(boolean r, boolean l, boolean u, boolean d) {
 		// TODO Auto-generated method stub
 		int x = 0, y = 0;
-		switch(dir) {
-		case UP: y = -1 * speed; break;
-		case DOWN: y = speed; break;
-		case LEFT: x = -1 * speed; break;
-		case RIGHT: x = speed; break;
+		if(r) {
+			x = speed; 
+		}
+		if(l) {
+			x = -speed;
+		}
+		if(u) {
+			y = -speed;
+		}
+		if(d) {
+			y = speed;
 		}
 		location.setLocation(location.getX() + x, location.getY() + y);
 	}

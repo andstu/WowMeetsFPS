@@ -81,27 +81,30 @@ public class Map extends JPanel{
 	public void performAction() { //executes actions here
 
 		if(inGame) {//execute actions in here
-			if(movementDirection != null)
-				user.move(movementDirection);
+			user.move(r,l,u,d);
 		}
 		repaint();
 	}
-	Dir movementDirection = null;
+	boolean r = false;
+	boolean l = false;
+	boolean u = false;
+	boolean d = false;
+	
 	private class KeyAction extends KeyAdapter {
 		public void keyPressed(KeyEvent arg0) {
 			switch(arg0.getKeyCode())
 			{
 			case(KeyEvent.VK_W):
-				movementDirection = Dir.UP;
+				u = true;
 				break;
 			case(KeyEvent.VK_S):
-				movementDirection = Dir.DOWN;
+				d = true;
 				break;
 			case(KeyEvent.VK_A):
-				movementDirection = Dir.LEFT;
+				l = true;
 				break;
 			case(KeyEvent.VK_D):
-				movementDirection = Dir.RIGHT;
+				r = true;
 				break;
 			}
 		}
@@ -110,16 +113,16 @@ public class Map extends JPanel{
 			switch(arg0.getKeyCode())
 			{
 			case(KeyEvent.VK_W):
-				movementDirection = null;
+				u = false;
 				break;
 			case(KeyEvent.VK_S):
-				movementDirection = null;
+				d = false;
 				break;
 			case(KeyEvent.VK_A):
-				movementDirection = null;
+				l = false;
 				break;
 			case(KeyEvent.VK_D):
-				movementDirection = null;
+				r = false;
 				break;
 			}
 		}
