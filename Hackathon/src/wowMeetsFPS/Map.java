@@ -2,6 +2,7 @@ package wowMeetsFPS;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -69,11 +70,23 @@ public class Map extends JPanel{
 		doDrawing(g);
 	}
 	public void doDrawing(Graphics g) { //does the drawing
+		int userLocX = (int) user.getLoc().getX();
+		int userLocY = (int) user.getLoc().getY();
 		g.drawImage(background, 0, 0, this);
-		g.drawImage(user.getImage(), (int) user.getLoc().getX(), (int) user.getLoc().getY(), this);
+		g.drawImage(user.getImage(), userLocX, userLocY, this);
+		String name = user.getID();
+		Font font = new Font("Comic Sans", Font.BOLD, 5);
+		g.drawString(name, userLocX + user.getImage().getWidth(this)/2 - getFontMetrics(font).stringWidth(name), userLocY + 2);
+		
 		for(Character temp : otherUsers) {
-			if(temp != null)
-				g.drawImage(temp.getImage(), (int) temp.getLoc().getX(), (int)temp.getLoc().getY(), this);
+			if(temp != null) {
+				Font tempFont = new Font("Comic Sans", Font.BOLD, 5);
+				int tempLocX = (int) temp.getLoc().getX();
+				int tempLocY = (int) temp.getLoc().getY();
+				String tempName = temp.getID();
+				g.drawImage(temp.getImage(), tempLocX, tempLocY, this);
+				g.drawString(tempName, tempLocX + user.getImage().getWidth(this)/2 - getFontMetrics(tempFont).stringWidth(tempName), tempLocY);
+			}
 		}
 	
 	}
