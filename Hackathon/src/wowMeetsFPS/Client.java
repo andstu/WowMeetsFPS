@@ -9,7 +9,7 @@ import java.util.TimerTask;
 
 public class Client {
 	final static int PORT = 25565;
-	final static String ip = "34.214.63.87";
+	final static String ip = "54.145.139.6";
 	
 	
 	String username;
@@ -22,6 +22,7 @@ public class Client {
 		public void run() {
 			map.performAction();
 			map.updateMap(user, otherPlayers);
+			updateProjectiles();
 			
 			Thread thread = new Thread(new Runnable() {
 
@@ -39,13 +40,19 @@ public class Client {
 	public static void start() {
 		timer.scheduleAtFixedRate(tasks, 0, 5);
 	}
+	private static void updateProjectiles() {
+		for(Projectile p: user.getProjectiles()) {
+			p.move();
+		}
+		
+	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");
-		user = new Tank("Dan" + (int)Math.random()*1000); //Initalize Character
+		user = new Tank("Andrew"); //Initalize Character
 		//Initialize otherPlayers
-		otherPlayers = new Character[4];
+		otherPlayers = new Character[0];
 		map = new Map(null, user, otherPlayers);
-		connectToServer("127.0.0.1",PORT, user);
+		connectToServer(ip,PORT, user);
 		start();
 	}	
 	static void connectToServer(String ip, int port, Character user)

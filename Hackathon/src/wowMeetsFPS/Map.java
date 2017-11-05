@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.LinkedList;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Point2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -40,6 +43,7 @@ public class Map extends JPanel{
 	public void initGraphics(JFrame window) {
 		//panel
 		this.addKeyListener(new KeyAction());
+		this.addMouseListener(new MouseAim());
 		this.setBackground(Color.black);
 		this.setPreferredSize(new Dimension((int)screenSize.getWidth(), (int)screenSize.getHeight()));
 		this.setFocusable(true); // I dont really know what this does but it makes it work
@@ -86,6 +90,11 @@ public class Map extends JPanel{
 				String tempName = temp.getID();
 				g.drawImage(temp.getImage(), tempLocX, tempLocY, this);
 				g.drawString(tempName, tempLocX + user.getImage().getWidth(this)/2 - getFontMetrics(tempFont).stringWidth(tempName), tempLocY);
+				for(Projectile p:  temp.getProjectiles()) {
+					int x = (int) p.getPos().getX();
+					int y = (int) p.getPos().getY();
+					g.drawImage(p.getImage(), x, y, this);
+				}
 			}
 		}
 	
@@ -98,6 +107,40 @@ public class Map extends JPanel{
 		repaint();
 	}
 	
+	private class MouseAim implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			Point loc = e.getLocationOnScreen();
+			user.attack(new Point2D.Double(loc.getX(), loc.getY()));
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 	
 	private class KeyAction extends KeyAdapter {
 		public void keyPressed(KeyEvent arg0) {

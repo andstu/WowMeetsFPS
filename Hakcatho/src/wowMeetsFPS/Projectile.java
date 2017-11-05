@@ -1,10 +1,14 @@
 package wowMeetsFPS;
 
+import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.io.Serializable;
 
-public class Projectile implements Serializable {
+import javax.swing.ImageIcon;
+
+public class Projectile implements Serializable{
  //Interface to determine the projectiles of a character
+	private String imageLocation = "";
 	int range;
 	int damage;
 	int speed;
@@ -33,5 +37,8 @@ public class Projectile implements Serializable {
 		double mag = Math.sqrt((Math.pow(directionVector.getX(), 2)) + Math.pow(directionVector.getY(), 2));
 		Point2D.Double unitV = new Point2D.Double(directionVector.getX()/mag, directionVector.getY()/mag);
 		return unitV;
+	}
+	public Image getImage() {
+		return new ImageIcon(getClass().getResource(imageLocation)).getImage();
 	}
 }
