@@ -136,21 +136,25 @@ public class Tank implements Character, Serializable {
 		if(right) {
 			x = speed; 
 			setImage(Dir.RIGHT);
+			currentDirectory = imageRight;
 		}
 		if(left)
 		{
 			x = -speed;
 			setImage(Dir.LEFT);
+			currentDirectory = imageLeft;
 		}
 		if(up)
 		{
 			y = -speed;
 			setImage(Dir.UP);
+			currentDirectory = imageUp;
 		}
 		if(down)
 		{
 			y = speed;
 			setImage(Dir.DOWN);
+			currentDirectory = imageDown;
 		}
 
 		location.setLocation(location.getX() + x, location.getY() + y);
