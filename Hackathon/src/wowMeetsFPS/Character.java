@@ -33,7 +33,7 @@ public interface Character {
 	public void setDefense(int defense);
 	public void setAttack(int attack);
 	public void setSpeed(int speed);
-	public void setImage(ImageIcon sprite, Dir direction);
+	public void setImage(String sprite, Dir direction);
 	public void setLoc(Point2D.Double location);
 	
 	public String getID();

@@ -7,35 +7,26 @@ import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
-import wowMeetsFPS.Character.Dir;
-
-public class Tank implements Character, Serializable{
+public class Tank implements Character, Serializable {
 	private Point2D.Double location;
-	private ImageIcon imageUp = new ImageIcon(getClass().getResource("/Facingback.png")), 
-					  imageDown = new ImageIcon(getClass().getResource("/FrontFacing.png")), 
-					  imageLeft = new ImageIcon(getClass().getResource("/FacingLeft.png")), 
-					  imageRight = new ImageIcon(getClass().getResource("/FacingRight.png"));
-	private Image current = imageDown.getImage();
+	private String imageUp = "/Facingback.png", 
+					  imageDown = "/FrontFacing.png", 
+					  imageLeft = "/FacingLeft.png", 
+					  imageRight = "/FacingRight.png";
+	private String currentDirectory;
 	private String id;
-	private int defense, attack, hp, speed = 100;
+	private int defense, attack, hp, speed = 10;
 	LinkedList<Projectile> projectiles;
 	
 	public Tank(String id) {
 		this.id = id;
 		location = new Point2D.Double(200, 200);
+		currentDirectory = imageDown;
 	}
-
-	@Override
-	public void move(Dir dir) {
-		// TODO Auto-generated method stub
-		int x = 0, y = 0;
-		switch(dir) {
-		case UP: y = speed; break;
-		case DOWN: y = -1 * speed; break;
-		case LEFT: x = -1 * speed; break;
-		case RIGHT: x = speed; break;
-		}
-		location.setLocation(location.getX() + x, location.getY() + y);
+	
+	public ImageIcon ImageIconFromString(String input)
+	{
+		return new ImageIcon(getClass().getResource(input));
 	}
 
 	@Override
@@ -70,9 +61,9 @@ public class Tank implements Character, Serializable{
 
 	@Override
 	public Image getImage() {
-		return current;
+		return ImageIconFromString(currentDirectory).getImage();
 	}
-
+	
 	@Override
 	public Point2D.Double getLoc() {
 		// TODO Auto-generated method stub
@@ -104,16 +95,16 @@ public class Tank implements Character, Serializable{
 	}
 
 	@Override
-	public void setImage(ImageIcon sprite, Dir direction) {
-
+	public void setImage(String directory, Dir direction) {
+		
 		switch(direction) {
-		case UP: current = imageUp.getImage(); 
+		case UP: currentDirectory = imageUp; 
 			break;
-		case DOWN: current = imageDown.getImage();
+		case DOWN: currentDirectory = imageDown;
 			break;
-		case LEFT: current = imageLeft.getImage();
+		case LEFT: currentDirectory = imageLeft;
 			break;
-		case RIGHT: current = imageRight.getImage();
+		case RIGHT: currentDirectory = imageRight;
 			break;
 		}
 		
@@ -136,5 +127,23 @@ public class Tank implements Character, Serializable{
 		// TODO Auto-generated method stub
 		return projectiles;
 	}
+	
+	@Override
+	public void move(boolean right, boolean left, boolean up, boolean down) {
+		// TODO Auto-generated method stub
 
+		int x = 0, y = 0;
+		if(right)
+			x = speed; 
+		if(left)
+			x = -speed;
+		if(up)
+			y = -speed;
+		if(down)
+			y = speed;
+
+		location.setLocation(location.getX() + x, location.getY() + y);
+	}
+
+	
 }
