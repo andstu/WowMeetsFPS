@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import wowMeetsFPS.Character;
 import wowMeetsFPS.Data;
@@ -35,14 +36,13 @@ public class ServerThread implements Runnable{
 			players.put(curr.getID(), curr);
 			
 			out = new ObjectOutputStream(socket.getOutputStream());
-			Character[] toSend = new Character[players.size() - 1];
-			int i = 0;
+			LinkedList<Character> toSend = new LinkedList<Character>();
+
 			for(String s: players.keySet()) {
 				if(s.equals(curr.getID())) continue;
-				toSend[i] = players.get(s);
-				i++;
+				toSend.add(players.get(s));
 			}
-			out.writeObject(new Data<Character[]>(toSend));
+			out.writeObject(new Data<LinkedList<Character>>(toSend));
 			socket.close();
 			
 			
