@@ -21,17 +21,7 @@ public class Client {
 		public void run() {
 			map.performAction();
 			map.updateMap(user, otherPlayers);
-			
-			Thread thread = new Thread(new Runnable() {
-
-			    @Override
-			    public void run() {
-			         connectToServer("127.0.0.1",PORT, user);       
-			    }
-			            
-			});
-			        
-			thread.start();
+			connectToServer("127.0.0.1",PORT, user);
 		}
 		
 	};
