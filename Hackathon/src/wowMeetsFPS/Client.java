@@ -36,7 +36,7 @@ public class Client {
 		
 	};
 	public static void start() {
-		timer.scheduleAtFixedRate(tasks, 0, 1);
+		timer.scheduleAtFixedRate(tasks, 0, 5);
 	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");

@@ -108,7 +108,7 @@ public class Map extends JPanel{
 		}
 		public void keyReleased(KeyEvent arg0)
 		{
-<<<<<<< HEAD
+
 			switch(arg0.getKeyCode())
 			{
 			case(KeyEvent.VK_W):
@@ -124,9 +124,7 @@ public class Map extends JPanel{
 				right = false;
 				break;
 			}
-=======
-			movementDirection = null;
->>>>>>> f8254586b9aa765a882d77e5fc93105bc9a40716
+
 		}
 	}	
 	public int getHeight() { return (int) screenSize.getHeight(); }
