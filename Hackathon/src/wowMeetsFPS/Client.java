@@ -1,10 +1,9 @@
 package wowMeetsFPS;
-import java.awt.Color;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.SocketAddress;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,7 +13,7 @@ public class Client {
 	
 	
 	String username;
-	static Character[] otherPlayers;
+	static LinkedList<Character> otherPlayers;
 	static Character user;
 	static Map map;
 	static Timer timer = new Timer();
@@ -42,7 +41,9 @@ public class Client {
 	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");
-		user = new Tank("mATT" + Math.random()*10); //Initalize Character
+		user = new Tank("Andrew"); //Initalize Character
+		//Initialize otherPlayers
+		otherPlayers = new LinkedList<Character>();
 		map = new Map(null, user, otherPlayers);
 		connectToServer("127.0.0.1",PORT, user);
 		start();
@@ -57,13 +58,9 @@ public class Client {
 			infoToServer.writeObject(new Data<Character>(user));
 			
 			ObjectInputStream infoFromServer = new ObjectInputStream(socket.getInputStream());
-			Data<Character[]> otherPlayersArray = (Data<Character[]>) infoFromServer.readObject();
+			Data<LinkedList<Character>> otherPlayersArray = (Data<LinkedList<Character>>) infoFromServer.readObject();
 			otherPlayers = otherPlayersArray.getInfo();
-			if(otherPlayers[0] != null)
-			{
-				System.out.println("The user: " + otherPlayers[0].getID() + " is in lobby with you!");
-			}
-			
+			map.updatePlayers(otherPlayers);
 			socket.close();
 		}
 		catch(IOException e)

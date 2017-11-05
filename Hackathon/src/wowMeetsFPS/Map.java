@@ -1,22 +1,17 @@
 package wowMeetsFPS;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
-
-import wowMeetsFPS.Character.Dir;
 
 public class Map extends JPanel{
 	
@@ -24,10 +19,10 @@ public class Map extends JPanel{
 	private Image background = new ImageIcon(getClass().getResource("/pokegrass(background).png")).getImage();
 	private boolean inGame = true;
 	Character user;
-	Character[] otherUsers;
+	LinkedList<Character> otherUsers;
 	boolean right = false, left = false, down = false, up = false;
 	
-	public Map(Color c, Character player, Character[] otherPlayers) {
+	public Map(Color c, Character player, LinkedList<Character> otherPlayers) {
 		user = player;
 		otherUsers = otherPlayers;
 		JFrame window = new JFrame();
@@ -35,8 +30,12 @@ public class Map extends JPanel{
 		initGame();
 	}
 	
+	public void updatePlayers(LinkedList<Character> p) {
+		otherUsers = p;
+	}
+	
 	//Readjusts the location of player and other players
-	public void updateMap(Character player, Character[] otherPlayers)
+	public void updateMap(Character player, LinkedList<Character> otherPlayers)
 	{
 		user = player;
 		otherUsers = otherPlayers;
