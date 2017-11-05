@@ -39,4 +39,6 @@ public interface Character {
 	public String getID();
 	
 	public LinkedList<Projectile> getProjectiles();
+	public void setCooldown(boolean cooldown);
+	public boolean getCooldown();
 }

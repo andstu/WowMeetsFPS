@@ -46,14 +46,16 @@ public class Projectile implements Serializable{
 	
 	void DetermineCollision()
 	{
-		for(int i = 0; i < enemies.length; i++)
+		for(int i = 0;  i < enemies.length && enemies[i] != null; i++)
 		{
+			System.out.println(i);
 			Point2D.Double enemyPos = enemies[i].getLoc();
 			if(position.getX() == enemyPos.getX() && position.getY() == enemyPos.getY())
 			{
 				enemies[i].setHP(enemies[i].getHP() - damage); //YO, CHECK THIS CAUSE STATS ARE WACK AND NEED A TAKE DAMAGE METHOD
 				enemies[i].setLoc(new Point2D.Double(0, 0)); //TEST
 			}
+			if(i + 1 == enemies.length) break;
 		}
 	}
 	public Image getImage() {

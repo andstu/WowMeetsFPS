@@ -20,6 +20,7 @@ public class Client {
 	static TimerTask tasks = new TimerTask() {
 		@Override
 		public void run() {
+			System.out.println("Wut Dah");
 			map.performAction();
 			map.updateMap(user, otherPlayers);
 			updateProjectiles();
@@ -38,22 +39,28 @@ public class Client {
 		
 	};
 	public static void start() {
+		System.out.println("AAHHHAHAH");
 		timer.scheduleAtFixedRate(tasks, 0, 5);
 	}
 	private static void updateProjectiles() {
+		user.setCooldown(true);
 		if(user.getProjectiles() != null) {
 		for(Projectile p: user.getProjectiles()) {
 			p.move();
 		}
 		}
+		user.setCooldown(false);
 	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");
-		user = new Tank("Andrew"); //Initalize Character
+		String username = null;
+		while(username == null || username.equals("")) {
+		username = Map.getUserName();
+		}
+		user = new Tank(username); //Initalize Character
 		//Initialize otherPlayers
 		otherPlayers = new Character[0];
 		map = new Map(null, user, otherPlayers);
-		connectToServer(ip,PORT, user);
 		start();
 	}	
 	static void connectToServer(String ip, int port, Character user)

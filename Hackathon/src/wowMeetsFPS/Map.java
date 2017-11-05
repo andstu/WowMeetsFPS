@@ -15,6 +15,7 @@ import java.awt.geom.Point2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Map extends JPanel{
@@ -192,5 +193,10 @@ public class Map extends JPanel{
 	}	
 	public int getHeight() { return (int) screenSize.getHeight(); }
 	public int getWidth() { return (int) screenSize.getWidth(); }
+
+	public static String getUserName() {
+		// TODO Auto-generated method stub
+		return (String)JOptionPane.showInputDialog("Enter Username: ");
+	}
 
 }
