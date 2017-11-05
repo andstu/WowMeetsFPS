@@ -1,20 +1,28 @@
 package wowMeetsFPS;
 
+import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.io.Serializable;
 import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
+import wowMeetsFPS.Character.Dir;
+
 public class Tank implements Character, Serializable{
 	private Point2D.Double location;
-	private ImageIcon image;
+	private ImageIcon imageUp = new ImageIcon(getClass().getResource("/Facingback.png")), 
+					  imageDown = new ImageIcon(getClass().getResource("/FrontFacing.png")), 
+					  imageLeft = new ImageIcon(getClass().getResource("/FacingLeft.png")), 
+					  imageRight = new ImageIcon(getClass().getResource("/FacingRight.png"));
+	private Image current = imageDown.getImage();
 	private String id;
-	private int defense, attack, hp, speed;
+	private int defense, attack, hp, speed = 100;
 	LinkedList<Projectile> projectiles;
 	
 	public Tank(String id) {
 		this.id = id;
+		location = new Point2D.Double(200, 200);
 	}
 
 	@Override
@@ -61,9 +69,8 @@ public class Tank implements Character, Serializable{
 	}
 
 	@Override
-	public ImageIcon getImage() {
-		// TODO Auto-generated method stub
-		return null;
+	public Image getImage() {
+		return current;
 	}
 
 	@Override
@@ -97,9 +104,19 @@ public class Tank implements Character, Serializable{
 	}
 
 	@Override
-	public void setImage(ImageIcon sprite) {
-		// TODO Auto-generated method stub
-		this.image = sprite;
+	public void setImage(ImageIcon sprite, Dir direction) {
+
+		switch(direction) {
+		case UP: current = imageUp.getImage(); 
+			break;
+		case DOWN: current = imageDown.getImage();
+			break;
+		case LEFT: current = imageLeft.getImage();
+			break;
+		case RIGHT: current = imageRight.getImage();
+			break;
+		}
+		
 	}
 
 	@Override
