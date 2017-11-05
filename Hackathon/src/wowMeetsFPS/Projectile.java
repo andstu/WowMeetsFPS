@@ -12,6 +12,7 @@ public class Projectile implements Serializable{
 	int range;
 	int damage;
 	int speed;
+	Character[] enemies;
 	Point2D.Double position;
 	Point2D.Double unitVector; //This is the direction the projectile travels. Magnitude (sqrt(x^2 + y^2)) must = 1
 	//
@@ -19,6 +20,7 @@ public class Projectile implements Serializable{
 		this.range = range;
 		this.damage = damage;
 		this.speed = speed;
+		this.enemies = Client.otherPlayers;
 		this.unitVector = calcUnitVector(target, position);
 		//Dan doesn't know what he is doing... WE HAD TO ADD THIS
 		this.position = position;
@@ -26,6 +28,7 @@ public class Projectile implements Serializable{
 	public void move() {
 		Point2D distTrav = new Point2D.Double(unitVector.getX()*speed, unitVector.getY()*speed);
 		position = new Point2D.Double(position.getX() + distTrav.getX(), position.getY() + distTrav.getY());
+		DetermineCollision();
 	}
 	public Point2D getUnitV() {
 		return unitVector;
@@ -39,6 +42,19 @@ public class Projectile implements Serializable{
 		double mag = Math.sqrt((Math.pow(directionVector.getX(), 2)) + Math.pow(directionVector.getY(), 2));
 		Point2D.Double unitV = new Point2D.Double(directionVector.getX()/mag, directionVector.getY()/mag);
 		return unitV;
+	}
+	
+	void DetermineCollision()
+	{
+		for(int i = 0; i < enemies.length; i++)
+		{
+			Point2D.Double enemyPos = enemies[i].getLoc();
+			if(position.getX() == enemyPos.getX() && position.getY() == enemyPos.getY())
+			{
+				enemies[i].setHP(enemies[i].getHP() - damage); //YO, CHECK THIS CAUSE STATS ARE WACK AND NEED A TAKE DAMAGE METHOD
+				enemies[i].setLoc(new Point2D.Double(0, 0)); //TEST
+			}
+		}
 	}
 	public Image getImage() {
 		return new ImageIcon(getClass().getResource(imageLocation)).getImage();
