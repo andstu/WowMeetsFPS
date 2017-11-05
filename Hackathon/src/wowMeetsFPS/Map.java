@@ -107,7 +107,21 @@ public class Map extends JPanel{
 		}
 		public void keyReleased(KeyEvent arg0)
 		{
-			movementDirection = null;
+			switch(arg0.getKeyCode())
+			{
+			case(KeyEvent.VK_W):
+				movementDirection = null;
+				break;
+			case(KeyEvent.VK_S):
+				movementDirection = null;
+				break;
+			case(KeyEvent.VK_A):
+				movementDirection = null;
+				break;
+			case(KeyEvent.VK_D):
+				movementDirection = null;
+				break;
+			}
 		}
 	}	
 	public int getHeight() { return (int) screenSize.getHeight(); }

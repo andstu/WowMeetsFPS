@@ -15,7 +15,7 @@ public class Tank implements Character, Serializable {
 					  imageRight = new ImageIcon(getClass().getResource("/FacingRight.png"));
 	private Image current = imageDown.getImage();
 	private String id;
-	private int defense, attack, hp, speed = 100;
+	private int defense, attack, hp, speed = 10;
 	LinkedList<Projectile> projectiles;
 	
 	public Tank(String id) {
