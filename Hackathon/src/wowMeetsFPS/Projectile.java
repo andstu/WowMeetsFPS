@@ -20,6 +20,8 @@ public class Projectile implements Serializable{
 		this.damage = damage;
 		this.speed = speed;
 		this.unitVector = calcUnitVector(target, position);
+		//Dan doesn't know what he is doing... WE HAD TO ADD THIS
+		this.position = position;
 	}
 	public void move() {
 		Point2D distTrav = new Point2D.Double(unitVector.getX()*speed, unitVector.getY()*speed);

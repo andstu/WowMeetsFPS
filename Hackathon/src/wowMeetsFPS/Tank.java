@@ -16,7 +16,7 @@ public class Tank implements Character, Serializable {
 	private String currentDirectory;
 	private String id;
 	private int defense, attack, hp, speed = 1;
-	LinkedList<Projectile> projectiles;
+	LinkedList<Projectile> projectiles = new LinkedList<Projectile>();
 	
 	public Tank(String id) {
 		this.id = id;
@@ -32,7 +32,7 @@ public class Tank implements Character, Serializable {
 	@Override
 	public void attack(Point2D.Double target) {
 		// TODO Auto-generated method stub
-		projectiles.add(new Projectile(50, attack, 10, location, target));
+		projectiles.add(new Projectile(50, attack, 1, location, target));
 	}
 
 	@Override

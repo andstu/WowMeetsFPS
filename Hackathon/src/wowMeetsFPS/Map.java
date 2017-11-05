@@ -18,14 +18,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Map extends JPanel{
-	
+
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //screensize 
 	private Image background = new ImageIcon(getClass().getResource("/pokegrass(background).png")).getImage();
 	private boolean inGame = true;
 	Character user;
 	Character[] otherUsers;
 	boolean right = false, left = false, down = false, up = false;
-	
+
 	public Map(Color c, Character player, Character[] otherPlayers) {
 		user = player;
 		otherUsers = otherPlayers;
@@ -33,7 +33,7 @@ public class Map extends JPanel{
 		initGraphics(window);
 		initGame();
 	}
-	
+
 	//Readjusts the location of player and other players
 	public void updateMap(Character player, Character[] otherPlayers)
 	{
@@ -54,10 +54,10 @@ public class Map extends JPanel{
 		window.pack();
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-		
+
 	}
 	/*
 	 * Initializes game
@@ -66,7 +66,7 @@ public class Map extends JPanel{
 	 * Other (I do not know what else needs to be put here)
 	 */
 	public void initGame() {
-		
+
 	}
 	@Override
 	public void paintComponent(Graphics g) {
@@ -81,7 +81,7 @@ public class Map extends JPanel{
 		String name = user.getID();
 		Font font = new Font("Comic Sans", Font.BOLD, 5);
 		g.drawString(name, userLocX + user.getImage().getWidth(this)/2 - getFontMetrics(font).stringWidth(name), userLocY + 2);
-		
+
 		for(Character temp : otherUsers) {
 			if(temp != null) {
 				Font tempFont = new Font("Comic Sans", Font.BOLD, 5);
@@ -90,14 +90,23 @@ public class Map extends JPanel{
 				String tempName = temp.getID();
 				g.drawImage(temp.getImage(), tempLocX, tempLocY, this);
 				g.drawString(tempName, tempLocX + user.getImage().getWidth(this)/2 - getFontMetrics(tempFont).stringWidth(tempName), tempLocY);
-				for(Projectile p:  temp.getProjectiles()) {
-					int x = (int) p.getPos().getX();
-					int y = (int) p.getPos().getY();
-					g.drawImage(p.getImage(), x, y, this);
+				if(temp.getProjectiles() != null) {
+					for(Projectile p:  temp.getProjectiles()) {
+						int x = (int) p.getPos().getX();
+						int y = (int) p.getPos().getY();
+						g.drawImage(p.getImage(), x, y, this);
+					}
 				}
 			}
 		}
-	
+		if(user.getProjectiles() != null) {
+			for(Projectile p:  user.getProjectiles()) {
+				int x = (int) p.getPos().getX();
+				int y = (int) p.getPos().getY();
+				g.drawImage(p.getImage(), x, y, this);
+			}
+		}
+
 	}
 	public void performAction() { //executes actions here
 
@@ -106,7 +115,7 @@ public class Map extends JPanel{
 		}
 		repaint();
 	}
-	
+
 	private class MouseAim implements MouseListener{
 
 		@Override
@@ -119,45 +128,45 @@ public class Map extends JPanel{
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
-	
+
 	private class KeyAction extends KeyAdapter {
 		public void keyPressed(KeyEvent arg0) {
 			switch(arg0.getKeyCode())
 			{
 			case(KeyEvent.VK_W):
 				up = true;
-				break;
+			break;
 			case(KeyEvent.VK_S):
 				down = true;
-				break;
+			break;
 			case(KeyEvent.VK_A):
 				left = true;
-				break;
+			break;
 			case(KeyEvent.VK_D):
 				right = true;
-				break;
+			break;
 			}
 		}
 		public void keyReleased(KeyEvent arg0)
@@ -167,21 +176,21 @@ public class Map extends JPanel{
 			{
 			case(KeyEvent.VK_W):
 				up = false;
-				break;
+			break;
 			case(KeyEvent.VK_S):
 				down = false;
-				break;
+			break;
 			case(KeyEvent.VK_A):
 				left = false;
-				break;
+			break;
 			case(KeyEvent.VK_D):
 				right = false;
-				break;
+			break;
 			}
 
 		}
 	}	
 	public int getHeight() { return (int) screenSize.getHeight(); }
 	public int getWidth() { return (int) screenSize.getWidth(); }
-	
+
 }

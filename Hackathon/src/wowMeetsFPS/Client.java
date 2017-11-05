@@ -41,10 +41,11 @@ public class Client {
 		timer.scheduleAtFixedRate(tasks, 0, 5);
 	}
 	private static void updateProjectiles() {
+		if(user.getProjectiles() != null) {
 		for(Projectile p: user.getProjectiles()) {
 			p.move();
 		}
-		
+		}
 	}
 	public static void main(String[] args){
 		System.out.println("Server is a go");
