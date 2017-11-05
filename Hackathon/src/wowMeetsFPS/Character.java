@@ -14,7 +14,7 @@ public interface Character {
 	public enum Dir{
 		UP, DOWN, LEFT, RIGHT
 	}
-	public void move(boolean r, boolean l, boolean u, boolean d);
+	public void move(boolean right, boolean left, boolean up, boolean down);
 	/*
 	 * Attack using projectiles
 	 * Should have a linklist to store projectiles

@@ -25,7 +25,8 @@ public class Map extends JPanel{
 	private boolean inGame = true;
 	Character user;
 	Character[] otherUsers;
-
+	boolean right = false, left = false, down = false, up = false;
+	
 	public Map(Color c, Character player, Character[] otherPlayers) {
 		user = player;
 		otherUsers = otherPlayers;
@@ -81,30 +82,27 @@ public class Map extends JPanel{
 	public void performAction() { //executes actions here
 
 		if(inGame) {//execute actions in here
-			user.move(r,l,u,d);
+			user.move(right,left,up,down);
 		}
 		repaint();
 	}
-	boolean r = false;
-	boolean l = false;
-	boolean u = false;
-	boolean d = false;
+	
 	
 	private class KeyAction extends KeyAdapter {
 		public void keyPressed(KeyEvent arg0) {
 			switch(arg0.getKeyCode())
 			{
 			case(KeyEvent.VK_W):
-				u = true;
+				up = true;
 				break;
 			case(KeyEvent.VK_S):
-				d = true;
+				down = true;
 				break;
 			case(KeyEvent.VK_A):
-				l = true;
+				left = true;
 				break;
 			case(KeyEvent.VK_D):
-				r = true;
+				right = true;
 				break;
 			}
 		}
@@ -113,16 +111,16 @@ public class Map extends JPanel{
 			switch(arg0.getKeyCode())
 			{
 			case(KeyEvent.VK_W):
-				u = false;
+				up = false;
 				break;
 			case(KeyEvent.VK_S):
-				d = false;
+				down = false;
 				break;
 			case(KeyEvent.VK_A):
-				l = false;
+				left = false;
 				break;
 			case(KeyEvent.VK_D):
-				r = false;
+				right = false;
 				break;
 			}
 		}
