@@ -16,6 +16,7 @@ public class Tank implements Character, Serializable {
 	private String currentDirectory;
 	private String id;
 	private int defense, attack, hp, speed = 1;
+	private boolean onCooldown = false;
 	LinkedList<Projectile> projectiles = new LinkedList<Projectile>();
 	
 	public Tank(String id) {
@@ -31,8 +32,8 @@ public class Tank implements Character, Serializable {
 
 	@Override
 	public void attack(Point2D.Double target) {
-		// TODO Auto-generated method stub
-		projectiles.add(new Projectile(50, attack, 1, location, target));
+		// TODO Create a queue to shoot fireballs
+		if(!onCooldown)projectiles.add(new Projectile(50, attack, 1, location, target));
 	}
 
 	@Override
@@ -159,6 +160,20 @@ public class Tank implements Character, Serializable {
 
 		location.setLocation(location.getX() + x, location.getY() + y);
 	}
+
+	@Override
+	public void setCooldown(boolean cooldown) {
+		// TODO Auto-generated method stub
+		this.onCooldown = cooldown;
+	}
+
+	@Override
+	public boolean getCooldown() {
+		// TODO Auto-generated method stub
+		return onCooldown;
+	}
+	
+	
 
 	
 }
