@@ -15,7 +15,7 @@ public class Tank implements Character, Serializable {
 					  imageRight = new ImageIcon(getClass().getResource("/FacingRight.png"));
 	private Image current = imageDown.getImage();
 	private String id;
-	private int defense, attack, hp, speed = 1;
+	private int defense, attack, hp, speed = 100;
 	LinkedList<Projectile> projectiles;
 	
 	public Tank(String id) {
@@ -26,12 +26,12 @@ public class Tank implements Character, Serializable {
 	@Override
 	public void move(Dir dir) {
 		// TODO Auto-generated method stub
-		double x = 0, y = 0;
+		int x = 0, y = 0;
 		switch(dir) {
-		case UP: y = -0.5 * speed; break;
-		case DOWN: y = 0.5 * speed; break;
-		case LEFT: x = -0.5 * speed; break;
-		case RIGHT: x = 0.5 * speed; break;
+		case UP: y = -1 * speed; break;
+		case DOWN: y = speed; break;
+		case LEFT: x = -1 * speed; break;
+		case RIGHT: x = speed; break;
 		}
 		location.setLocation(location.getX() + x, location.getY() + y);
 	}
